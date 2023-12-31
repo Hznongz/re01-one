@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!-- saved from url=(0214)http://localhost:63342/Re01%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/index.html?_ijt=1voiudrdp0l4d5m8grnuo0pt14&_ij_reload=RELOAD_ON_SAVE -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>我的个人网站</title>
+</head>
+<body style="margin: 0">
+    <div style="background-color: #f1f1f1;text-align: center;padding: 20px">
+        <img alt="头像" src="./index_files/head_image02.jpg" style="border-radius: 40px;width:80px;height:80px">
+    </div>
+    <div style="display: block;max-width: 760px;margin: 20px auto;padding: 20px;background-color: #a1b7b3;border: 1px dot-dash black;border-radius: 10px">
+        <h1 style="text-align: center;text-decoration: underline">个人简介</h1>
+        <div style="display: flex">
+            <div style="width:200px;line-height: 1.7em;padding: 0 15px;margin-top: 0">
+            <p>姓名：吴海珠</p>
+            <p>电话：1390000000</p>
+            <p>地址：中国海南省</p>
+            <p>职业：林业工程</p>
+            </div>
+            <div style="text-align: center">
+                <img alt="图片" src="./index_files/forest03.jpg" style="width: 100px;height: 150px;margin-top: 20px;border-radius: 5px">
+                <img alt="图片" src="./index_files/forest04.jpg" style="width: 100px;height: 150px;margin-top: 20px;border-radius: 5px">
+                <img alt="图片" src="./index_files/forest05.jpg" style="width: 100px;height: 150px;margin-top: 20px;border-radius: 5px">
+                <img alt="图片" src="./index_files/forest02.jpg" style="width: 100px;height: 150px;margin-top: 20px;border-radius: 5px">
+                <img alt="图片" src="./index_files/forest01.jpg" style="width: 100px;height: 150px;margin-top: 20px;border-radius: 5px">
+            </div>
+        </div>
+
+    </div>
+    <div style="background-color: #f1f1f1;text-align: center;padding: 20px;font-size: 12px">
+        <p>版权所有：HZ农庄工作室</p>
+        <a href="http://localhost:63342/Re01%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/%E7%BC%96%E7%A8%8B%E4%B9%8B%E8%B7%AF/index.html?_ijt=1voiudrdp0l4d5m8grnuo0pt14&amp;_ij_reload=RELOAD_ON_SAVE#">我的网站</a>
+    </div>
+
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + '/jb-server-page?reloadServiceClientId=155');
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash 
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script></body></html>
